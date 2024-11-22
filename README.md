@@ -1,4 +1,4 @@
-Carpooling web app used at [DHBW Lörrach](https://www.dhbw-loerrach.de). 
+Carpooling web app used at [DHBW Lörrach](https://www.dhbw-loerrach.de).
 
 Tech stack:
 
@@ -6,7 +6,6 @@ Tech stack:
 - [SQLite](https://sqlite.org) database
 - [Prisma](https://www.prisma.io/) as ORM
 - [shadcn/ui](https://ui.shadcn.com) components
-- [Lucia](https://lucia-auth.com) for authentication 
 
 After cloning the repo and installing dependencies (`npm install`) follow these steps to run the app:
 
