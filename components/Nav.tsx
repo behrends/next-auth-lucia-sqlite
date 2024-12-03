@@ -24,6 +24,10 @@ const authRoutes: Route[] = [
     href: '/signup',
     label: 'Registrieren',
   },
+  {
+    href: '/register',
+    label: 'Neues Konto',
+  },
 ];
 
 const appRoutes: Route[] = [
