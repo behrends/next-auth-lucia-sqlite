@@ -21,12 +21,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Car, GraduationCap, Home, Mail, Pencil, User } from 'lucide-react'
+import { Car, GraduationCap, Home, Lock, Mail, Pencil, User } from 'lucide-react'
 
 const formSchema = z.object({
   first: z.string().min(1, "Vorname ist erforderlich"),
   last: z.string().min(1, "NAchname ist erforderlich"),
   email: z.string().email("Ungültige E-Mail-Adresse"),
+  password: z.string().min(8, "Passwort muss mindestens 8 Zeichen lang sein"),
+  passwordConfirmation: z.string(),
   course: z.string().min(1, "Bitte wählen Sie einen Kurs"),
   city: z.string().min(1, "Bitte wählen Sie eine Stadt"),
   driver: z.string().min(1, "Bitte wählen Sie eine Option"),
@@ -34,6 +36,9 @@ const formSchema = z.object({
   rules: z.boolean().refine(val => val === true, {
     message: "Sie müssen den Regeln zustimmen",
   }),
+}).refine((data) => data.password === data.passwordConfirmation, {
+  message: "Passwörter stimmen nicht überein",
+  path: ["passwordConfirmation"],
 })
 
 export default function RegistrationForm() {
@@ -43,6 +48,8 @@ export default function RegistrationForm() {
       first: "",
       last: "",
       email: "",
+      password: "",
+      passwordConfirmation: "",
       notes: "",
       rules: false,
     },
@@ -101,6 +108,38 @@ export default function RegistrationForm() {
                   <div className="relative">
                     <Input placeholder="E-Mail" {...field} className="pl-10" />
                     <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <div className="relative">
+                    <Input type="password" placeholder="Passwort" {...field} className="pl-10" />
+                    <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="passwordConfirmation"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <div className="relative">
+                    <Input type="password" placeholder="Passwort bestätigen" {...field} className="pl-10" />
+                    <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
                 </FormControl>
                 <FormMessage />
