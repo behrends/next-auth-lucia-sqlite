@@ -1,72 +1,88 @@
-'use client'
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Car, GraduationCap, Home, Lock, Mail, Pencil, User } from 'lucide-react'
+} from '@/components/ui/select';
+import {
+  Car,
+  GraduationCap,
+  Home,
+  Lock,
+  Mail,
+  Pencil,
+  User,
+} from 'lucide-react';
 
-const formSchema = z.object({
-  first: z.string().min(1, "Vorname ist erforderlich"),
-  last: z.string().min(1, "NAchname ist erforderlich"),
-  email: z.string().email("Ungültige E-Mail-Adresse"),
-  password: z.string().min(8, "Passwort muss mindestens 8 Zeichen lang sein"),
-  passwordConfirmation: z.string(),
-  course: z.string().min(1, "Bitte wählen Sie einen Kurs"),
-  city: z.string().min(1, "Bitte wählen Sie eine Stadt"),
-  driver: z.string().min(1, "Bitte wählen Sie eine Option"),
-  notes: z.string(),
-  rules: z.boolean().refine(val => val === true, {
-    message: "Sie müssen den Regeln zustimmen",
-  }),
-}).refine((data) => data.password === data.passwordConfirmation, {
-  message: "Passwörter stimmen nicht überein",
-  path: ["passwordConfirmation"],
-})
+const formSchema = z
+  .object({
+    first: z.string().min(1, 'Vorname ist erforderlich'),
+    last: z.string().min(1, 'Nachname ist erforderlich'),
+    email: z.string().email('Ungültige E-Mail-Adresse'),
+    password: z
+      .string()
+      .min(8, 'Passwort muss mindestens 8 Zeichen lang sein'),
+    passwordConfirmation: z.string(),
+    course: z.string().min(1, 'Bitte wählen Sie einen Kurs'),
+    city: z.string().min(1, 'Bitte wählen Sie eine Stadt'),
+    driver: z.string().min(1, 'Bitte wählen Sie eine Option'),
+    notes: z.string(),
+    rules: z.boolean().refine((val) => val === true, {
+      message: 'Sie müssen den Regeln zustimmen',
+    }),
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: 'Passwörter stimmen nicht überein',
+    path: ['passwordConfirmation'],
+  });
 
 export default function RegistrationForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      first: "",
-      last: "",
-      email: "",
-      password: "",
-      passwordConfirmation: "",
-      notes: "",
+      first: '',
+      last: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+      notes: '',
       rules: false,
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    console.log(values);
   }
 
   return (
     <div className="w-full max-w-md mx-auto p-6">
       <h1 className="text-xl text-center font-medium mb-6">
-        Bitte füllen Sie das Formular aus, um ein neues Konto zu registrieren
+        Bitte füllen Sie das Formular aus, um ein neues Konto zu
+        registrieren
       </h1>
-      
+
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4"
+        >
           <FormField
             control={form.control}
             name="first"
@@ -74,7 +90,11 @@ export default function RegistrationForm() {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input placeholder="Vorname" {...field} className="pl-10" />
+                    <Input
+                      placeholder="Vorname"
+                      {...field}
+                      className="pl-10"
+                    />
                     <User className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
                 </FormControl>
@@ -90,7 +110,11 @@ export default function RegistrationForm() {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input placeholder="Nachname" {...field} className="pl-10" />
+                    <Input
+                      placeholder="Nachname"
+                      {...field}
+                      className="pl-10"
+                    />
                     <User className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
                 </FormControl>
@@ -106,7 +130,11 @@ export default function RegistrationForm() {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input placeholder="E-Mail" {...field} className="pl-10" />
+                    <Input
+                      placeholder="E-Mail"
+                      {...field}
+                      className="pl-10"
+                    />
                     <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
                 </FormControl>
@@ -122,7 +150,12 @@ export default function RegistrationForm() {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input type="password" placeholder="Passwort" {...field} className="pl-10" />
+                    <Input
+                      type="password"
+                      placeholder="Passwort"
+                      {...field}
+                      className="pl-10"
+                    />
                     <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
                 </FormControl>
@@ -138,7 +171,12 @@ export default function RegistrationForm() {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Input type="password" placeholder="Passwort bestätigen" {...field} className="pl-10" />
+                    <Input
+                      type="password"
+                      placeholder="Passwort bestätigen"
+                      {...field}
+                      className="pl-10"
+                    />
                     <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
                 </FormControl>
@@ -152,7 +190,10 @@ export default function RegistrationForm() {
             name="course"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <div className="relative">
                       <SelectTrigger className="w-full pl-10">
@@ -177,7 +218,10 @@ export default function RegistrationForm() {
             name="city"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <div className="relative">
                       <SelectTrigger className="w-full pl-10">
@@ -189,7 +233,9 @@ export default function RegistrationForm() {
                   <SelectContent>
                     <SelectItem value="loerrach">Lörrach</SelectItem>
                     <SelectItem value="freiburg">Freiburg</SelectItem>
-                    <SelectItem value="karlsruhe">Karlsruhe</SelectItem>
+                    <SelectItem value="karlsruhe">
+                      Karlsruhe
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -202,7 +248,10 @@ export default function RegistrationForm() {
             name="driver"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <div className="relative">
                       <SelectTrigger className="w-full pl-10">
@@ -212,8 +261,12 @@ export default function RegistrationForm() {
                     </div>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="no">Ich bin kein Fahrer</SelectItem>
-                    <SelectItem value="yes">Ich bin Fahrer</SelectItem>
+                    <SelectItem value="no">
+                      Ich bin kein Fahrer
+                    </SelectItem>
+                    <SelectItem value="yes">
+                      Ich bin Fahrer
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -254,19 +307,28 @@ export default function RegistrationForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <div className="text-sm">
-                    Ich stimme den <a href="#" className="text-primary hover:underline">Regeln</a> zu
+                    Ich stimme den{' '}
+                    <a
+                      href="#"
+                      className="text-primary hover:underline"
+                    >
+                      Regeln
+                    </a>{' '}
+                    zu
                   </div>
                 </div>
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-[#82a1f6] hover:bg-[#6b8af0]">
+          <Button
+            type="submit"
+            className="w-full bg-[#82a1f6] hover:bg-[#6b8af0]"
+          >
             Registrieren
           </Button>
         </form>
       </Form>
     </div>
-  )
+  );
 }
-
