@@ -63,6 +63,9 @@ export default function RegistrationForm() {
       password: '',
       passwordConfirmation: '',
       notes: '',
+      city: '',
+      course: '',
+      driver: 'no',
       rules: false,
     },
   });
@@ -225,7 +228,7 @@ export default function RegistrationForm() {
                   <FormControl>
                     <div className="relative">
                       <SelectTrigger className="w-full pl-10">
-                        <SelectValue placeholder="Wähle deine Stadt" />
+                        <SelectValue placeholder="Wählen Sie Ihre Stadt" />
                       </SelectTrigger>
                       <Home className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                     </div>
