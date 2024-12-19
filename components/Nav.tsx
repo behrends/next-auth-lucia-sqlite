@@ -69,14 +69,14 @@ export default async function Nav() {
         </SheetContent>
       </Sheet>
       <div className="flex flex-1 flex-row  justify-end gap-2">
-        {/*user && (
+        {user && (
           <form action={logout}>
             <Button variant="outline">
               <span className="hidden sm:block">Abmelden</span>
               <LogOut className="sm:ml-2 h-[1.2rem] w-[1.2rem]" />
             </Button>
           </form>
-        )*/}
+        )}
         <DarkModeToggle />
       </div>
     </header>
