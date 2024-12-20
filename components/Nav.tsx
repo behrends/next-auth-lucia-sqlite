@@ -3,6 +3,7 @@ import { logout } from '@/actions/auth';
 import { validateRequest } from '@/lib/lucia';
 import { Route } from '@/lib/types';
 import { Button } from '@/components/ui/button';
+import Form from '@/components/Form';
 import {
   Sheet,
   SheetContent,
@@ -70,12 +71,12 @@ export default async function Nav() {
       </Sheet>
       <div className="flex flex-1 flex-row  justify-end gap-2">
         {user && (
-          <form action={logout}>
+          <Form action={logout}>
             <Button variant="outline">
               <span className="hidden sm:block">Abmelden</span>
               <LogOut className="sm:ml-2 h-[1.2rem] w-[1.2rem]" />
             </Button>
-          </form>
+          </Form>
         )}
         <DarkModeToggle />
       </div>
