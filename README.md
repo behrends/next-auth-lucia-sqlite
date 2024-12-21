@@ -14,3 +14,22 @@ After cloning the repo and installing dependencies (`npm install`) follow these 
 - `npm run dev` to start the development server.
 
 The app will be available at [http://localhost:3000](http://localhost:3000) where you can sign up with a new user which is stored locally. To inspect the SQLite database, you can use Prisma studio by running `npx prisma studio` and opening [http://localhost:5555](http://localhost:5555).
+
+## Deployment with Docker
+
+This involves building the docker image locally, pushing it to GitHub Container registry (ghcr.io) and pulling the image in the server.
+
+### Create Personal Access Tokens (PAT) on GitHub
+
+- Settings ➔ Developer settings ➔ Personal access tokens ➔ Tokens (classic) ➔ Generate new token (classic)
+  - PAT for dev: `carpooling-push` with `write:packages` scope.
+  - PAT for server: `carpooling-docker` with `read:packages` scope.
+
+### Build and push image
+
+- `docker build . --platform linux/amd64 -t ghcr.io/dhbwoerrach/carpooling:latest`
+- `docker login ghcr.io` with PAT `carpooling-push` as password
+- `docker push ghcr.io/dhbwoerrach/carpooling:latest`
+- Verify that the new package landed in https://github.com/orgs/DHBWLoerrach/packages/container/package/carpooling
+
+### Deploy on server
