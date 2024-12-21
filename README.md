@@ -27,9 +27,9 @@ This involves building the docker image locally, pushing it to GitHub Container 
 
 ### Build and push image
 
-- `docker build . --platform linux/amd64 -t ghcr.io/dhbwoerrach/carpooling:latest`
+- `docker build . --platform linux/amd64 -t ghcr.io/dhbwloerrach/carpooling:latest`
 - `docker login ghcr.io` with PAT `carpooling-push` as password
-- `docker push ghcr.io/dhbwoerrach/carpooling:latest`
+- `docker push ghcr.io/dhbwloerrach/carpooling:latest`
 - Verify that the new package landed in https://github.com/orgs/DHBWLoerrach/packages/container/package/carpooling
 
 ### Deploy on server
