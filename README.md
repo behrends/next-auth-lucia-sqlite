@@ -31,5 +31,9 @@ This involves building the docker image locally, pushing it to GitHub Container 
 - `docker login ghcr.io` with PAT `carpooling-push` as password
 - `docker push ghcr.io/dhbwloerrach/carpooling:latest`
 - Verify that the new package landed in https://github.com/orgs/DHBWLoerrach/packages/container/package/carpooling
+- (Occasionly remove obsolete versions.)
 
-### Deploy on server
+### Deploy on server (WIP)
+
+- Set environment variable `GHCR_PAT` to contain server PAT
+- Execute deployment script
