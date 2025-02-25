@@ -22,16 +22,16 @@ This involves building the docker image locally, pushing it to GitHub Container 
 ### Create Personal Access Tokens (PAT) on GitHub
 
 - Settings ➔ Developer settings ➔ Personal access tokens ➔ Tokens (classic) ➔ Generate new token (classic)
-  - PAT for dev: `carpooling-push` with `write:packages` scope.
-  - PAT for server: `carpooling-docker` with `read:packages` scope.
+  - PAT for dev: `push` with `write:packages` scope.
+  - PAT for server: `docker` with `read:packages` scope.
 
 ### Build and push image
 
 - `docker build . --platform linux/amd64 -t ghcr.io/dhbwloerrach/carpooling:latest`
-- `docker login ghcr.io` with PAT `carpooling-push` as password
+- `docker login ghcr.io` with PAT `push` as password
 - `docker push ghcr.io/dhbwloerrach/carpooling:latest`
 - Verify that the new package landed in https://github.com/orgs/DHBWLoerrach/packages/container/package/carpooling
-- (Occasionly remove obsolete versions.)
+- (Occasionally remove obsolete versions.)
 
 ### Deploy on server (WIP)
 
