@@ -1,8 +1,7 @@
-Carpooling web app used at [DHBW Lörrach](https://www.dhbw-loerrach.de).
-
 Tech stack:
 
 - [Next.js](https://nextjs.org/) (frontend/backend)
+- [Lucia](https://lucia-auth.com) (authentication)
 - [SQLite](https://sqlite.org) database
 - [Prisma](https://www.prisma.io/) as ORM
 - [shadcn/ui](https://ui.shadcn.com) components
@@ -14,26 +13,3 @@ After cloning the repo and installing dependencies (`npm install`) follow these 
 - `npm run dev` to start the development server.
 
 The app will be available at [http://localhost:3000](http://localhost:3000) where you can sign up with a new user which is stored locally. To inspect the SQLite database, you can use Prisma studio by running `npx prisma studio` and opening [http://localhost:5555](http://localhost:5555).
-
-## Deployment with Docker
-
-This involves building the docker image locally, pushing it to GitHub Container registry (ghcr.io) and pulling the image in the server.
-
-### Create Personal Access Tokens (PAT) on GitHub
-
-- Settings ➔ Developer settings ➔ Personal access tokens ➔ Tokens (classic) ➔ Generate new token (classic)
-  - PAT for dev: `push` with `write:packages` scope.
-  - PAT for server: `pull` with `read:packages` scope.
-
-### Build and push image
-
-- `docker build . --platform linux/amd64 -t ghcr.io/dhbwloerrach/carpooling:latest`
-- `docker login ghcr.io` with PAT `push` as password
-- `docker push ghcr.io/dhbwloerrach/carpooling:latest`
-- Verify that the new package landed in https://github.com/orgs/DHBWLoerrach/packages/container/package/carpooling
-- (Occasionally remove obsolete versions.)
-
-### Deploy on server (WIP)
-
-- `docker login ghcr.io` with PAT `pull` as password
-- Execute deployment script
